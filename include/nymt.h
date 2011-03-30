@@ -27,6 +27,20 @@
 
 /* 
   libnymt.h -> Public Header for the Multi Threading Library
+
+  This libraries intent|goals:
+    - Provide an extremely 'thin' (i.e. 1:1) wrapper for threading concepts
+    - Be platform and architecture independant
+
+  Currently, the library supports the following concepts:
+    - Thread creation, attributes and joining
+    - Thread cancellation
+    - Mutex
+    - Condition Variables
+
+  We support the following platforms (with the noted underlying implementation):
+    - *nix/Mac OS - via pthreads
+    - Windows - via Win32 API (All flavors of windows)
 */
 
 #ifndef __NYMT_INCLUDE_H__
@@ -36,6 +50,21 @@
 extern "C" {
 #endif
 
+#include <stdint.h>
+
+#define NYMT_VERSION_MAJOR 1
+#define NYMT_VERSION_MINOR 0
+#define NYMT_VERSION_BUILD 0
+#define NYMT_VERSION_PATCH 0
+
+/* Version is a 32 bit integer, 8 bits each for Major, Minor, Build, Patch */
+#define NYMT_VERSION (NYMT_VERSION_MAJOR << 24 | \
+                      NYMT_VERSION_MINOR << 16 | \
+                      NYMT_VERSION_BUILD << 8  | \
+                      NYMT_VERSION_BUILD << 0)
+
+uint32_t     nymt_version_number();
+const char * nymt_version_string();
 
 #ifdef __cplusplus
 }
