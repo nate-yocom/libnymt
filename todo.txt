@@ -1,2 +1,4 @@
 [ ] Add test/ dir with small app that links lib and uses it 
-[ ] Add pthread|win32 implementation files
+[ ] Get win32 build added
+[ ] Implement pthread wrapper
+[ ] Implement win32 wrapper
