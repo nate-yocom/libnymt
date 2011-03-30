@@ -1,3 +1,9 @@
+# *nix and Mac Makefile - builds libnymt with underlying pthread
+# implementation.  Set the following env variables to change build
+# settings:
+#   ARCH=32|64
+#   DEBUG=1 (omit for release build)
+
 CC = gcc
 vpath %.c src
 
@@ -44,4 +50,4 @@ $(LIB): $(OBJECTS)
 .PHONY: clean dirs
 clean:
 	rm -f *.o
-	rm -rf $(LIBDIR)
+	rm -rf lib/

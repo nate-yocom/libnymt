@@ -64,7 +64,6 @@ extern "C" {
                       NYMT_VERSION_BUILD << 0)
 
 uint32_t     nymt_version_number();
-const char * nymt_version_string();
 
 #ifdef __cplusplus
 }
