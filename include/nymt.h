@@ -63,7 +63,12 @@ extern "C" {
                       NYMT_VERSION_BUILD << 8  | \
                       NYMT_VERSION_BUILD << 0)
 
-uint32_t     nymt_version_number();
+uint32_t  nymt_version_number();
+uint32_t  nymt_version_major();
+uint32_t  nymt_version_minor();
+uint32_t  nymt_version_build();
+uint32_t  nymt_version_patch();
+
 
 #ifdef __cplusplus
 }

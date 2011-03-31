@@ -5,6 +5,9 @@
 
 int main(int argc, char ** argv)
 {
-  printf("libnymt version: %d:0x%08x\n", nymt_version_number(), nymt_version_number());
+  printf("libnymt version: 0x%08x = %d.%d.%d.%d\n", 
+    nymt_version_number(), nymt_version_major(),
+    nymt_version_minor(), nymt_version_build(),
+    nymt_version_patch());
   return 0;
 }
