@@ -33,7 +33,7 @@ endif
 
 BUILD_DIR=build/$(ARCH_DIR)
 
-LIB_SOURCES=nymt.c
+LIB_SOURCES=nymt.c pthreads_impl.c
 LIB_OBJECTS=$(LIB_SOURCES:.c=.o)
 LIB_DIR=lib/$(ARCH_DIR)
 LIB_NAME=libnymt.a
