@@ -25,6 +25,8 @@
   DAMAGE.
 */
 
+/* pthread implementation header */
+
 #ifndef __NYMT_PTHREADS_IMPL_H__
 #define __NYMT_PTHREADS_IMPL_H__
 
