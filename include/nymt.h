@@ -61,7 +61,9 @@ extern "C" {
 #define NYMT_VERSION (NYMT_VERSION_MAJOR << 24 | \
                       NYMT_VERSION_MINOR << 16 | \
                       NYMT_VERSION_BUILD << 8  | \
-                      NYMT_VERSION_BUILD << 0)
+                      NYMT_VERSION_PATCH << 0)
+
+#define NYMT_SUCCESS  0 /* All other int return codes are errors */
 
 uint32_t  nymt_version_number();
 uint32_t  nymt_version_major();
@@ -69,6 +71,23 @@ uint32_t  nymt_version_minor();
 uint32_t  nymt_version_build();
 uint32_t  nymt_version_patch();
 
+typedef struct nymt_thread_handle nymt_thread_handle;
+typedef struct nymt_thread_attributes nymt_thread_attributes;
+typedef void * (*nymt_thread_start)(void *);
+
+/* Get handles from here: */
+nymt_thread_handle *      nymt_get_thread_handle(void);
+nymt_thread_attributes *  nymt_get_thread_attributes(void);
+
+/* Use handles here */
+int   nymt_thread_create(nymt_thread_handle *, nymt_thread_attributes *, nymt_thread_start, void *);
+int   nymt_thread_detach(nymt_thread_handle *);
+int   nymt_thread_join(nymt_thread_handle *, void **);
+void  nymt_thread_exit(void *);
+
+/* Cleanup handles here */
+void  nymt_free_thread_handle(nymt_thread_handle *);
+void  nymt_free_thread_attributes_handle(nymt_thread_attributes *);
 
 #ifdef __cplusplus
 }
