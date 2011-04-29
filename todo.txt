@@ -1,7 +1,12 @@
 [X] Add test/ dir with small app that links lib and uses it 
-[ ] Get win32 build added
-[ ] Implement pthread wrapper
+[X] Implement basic pthread thread (start/stop/join/results) wrappers
+[X] Implement basic pthread mutex wrappers
 [ ] Implement win32 wrapper
 [ ] Find out how to write a real makefile:
     - don't rebuild always
     - keeps compiled files (.o and bins) in arch specific dirs, and not in root
+[ ] Add thread attributes
+[ ] Add mutex attributes
+[ ] Error codes/handling
+[ ] Distribute handles from array
+[ ] Allow passing allocator for handle factories

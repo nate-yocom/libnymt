@@ -37,25 +37,16 @@ extern "C" {
 #include <stdint.h>
 #include <pthread.h>
 
+/* Impl must define nymt_thread_handle and nymt_thread_attributes */
 struct nymt_thread_handle
 {
   pthread_t thread_handle;
 };
 
-struct nymt_thread_attributes
+struct nymt_mutex_handle
 {
-  pthread_attr_t thread_attr_handle;
+  pthread_mutex_t mutex_handle;
 };
-
-#define NYMT_TO_PTHREAD_T(x) (x.thread_handle)
-#define NYMT_TO_PTHREAD_TP(x) (&x.thread_handle)
-#define NYMT_P_TO_PTHREAD_T(x) (x->thread_handle)
-#define NYMT_P_TO_PTHREAD_TP(x) (x ? &x->thread_handle : 0)
-
-#define NYMT_TO_PTHREAD_ATTR_T(x) (x.thread_attr_handle)
-#define NYMT_TO_PTHREAD_ATTR_TP(x) (&x.thread_attr_handle)
-#define NYMT_P_TO_PTHREAD_ATTR_T(x) (x->thread_attr_handle)
-#define NYMT_P_TO_PTHREAD_ATTR_TP(x) (x ? &x->thread_attr_handle : 0)
 
 #ifdef __cplusplus
 }

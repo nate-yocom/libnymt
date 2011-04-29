@@ -71,23 +71,28 @@ uint32_t  nymt_version_minor();
 uint32_t  nymt_version_build();
 uint32_t  nymt_version_patch();
 
+/* Opaque handle definitions */
 typedef struct nymt_thread_handle nymt_thread_handle;
-typedef struct nymt_thread_attributes nymt_thread_attributes;
+typedef struct nymt_mutex_handle nymt_mutex_handle;
 typedef void * (*nymt_thread_start)(void *);
 
-/* Get handles from here: */
+/* Handle factories */
 nymt_thread_handle *      nymt_get_thread_handle(void);
-nymt_thread_attributes *  nymt_get_thread_attributes(void);
+nymt_mutex_handle *       nymt_get_mutex_handle(void);
 
-/* Use handles here */
-int   nymt_thread_create(nymt_thread_handle *, nymt_thread_attributes *, nymt_thread_start, void *);
+/* Handle destruction */
+void  nymt_free_thread_handle(nymt_thread_handle *);
+void  nymt_free_mutex_handle(nymt_mutex_handle *);
+
+/* Threads */
+int   nymt_thread_create(nymt_thread_handle *, nymt_thread_start, void *);
 int   nymt_thread_detach(nymt_thread_handle *);
 int   nymt_thread_join(nymt_thread_handle *, void **);
 void  nymt_thread_exit(void *);
 
-/* Cleanup handles here */
-void  nymt_free_thread_handle(nymt_thread_handle *);
-void  nymt_free_thread_attributes_handle(nymt_thread_attributes *);
+/* Mutexes */
+int   nymt_mutex_lock(nymt_mutex_handle *);
+int   nymt_mutex_unlock(nymt_mutex_handle *);
 
 #ifdef __cplusplus
 }

@@ -26,7 +26,6 @@
 */
 
 /* Platform agnostic implementations */
-
 #include <nymt.h>
 
 uint32_t  nymt_version_number()
@@ -53,3 +52,5 @@ uint32_t  nymt_version_patch()
 {
   return (NYMT_VERSION & 0x000000FF);
 }
+
+

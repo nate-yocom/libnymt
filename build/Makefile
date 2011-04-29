@@ -15,7 +15,7 @@ CPU_ARCH=32
 endif
 
 # Now build CFLAGS, first is the stuff all flavors get:
-BASE_CFLAGS=-c -Wall -I. -Iinclude/
+BASE_CFLAGS=-DPTHREAD_IMPL -c -Wall -I. -Iinclude/
 
 # Now set CFLAGS as base + debug|release specifics
 # Default is RELEASE x86
