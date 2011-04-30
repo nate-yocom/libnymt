@@ -4,6 +4,13 @@
 #include <nymt.h>           /* Public nymt header */
 #include "pthreads_impl.h"  /* Internal pthread specific header */
 
+static void * _nymt_pthread_proc(void * args)
+{
+  nymt_thread_handle * handle = (nymt_thread_handle *) args;
+  handle->thread_start(handle->thread_args);
+  return 0;
+}
+
 nymt_thread_handle * nymt_get_thread_handle(void)
 {
   /* TBD: Basic array of free handles? use malloc? use passed allocator? */
@@ -19,7 +26,9 @@ int nymt_thread_create(nymt_thread_handle * handle,
                        nymt_thread_start start, void * args)
 {
   /* TBD: Map return value(s) somehow... */
-  return pthread_create(&handle->thread_handle, 0, start, args);
+  handle->thread_start = start;
+  handle->thread_args = args;
+  return pthread_create(&handle->thread_handle, 0, _nymt_pthread_proc, handle);
 }
 
 int nymt_thread_detach(nymt_thread_handle * handle)
@@ -27,15 +36,15 @@ int nymt_thread_detach(nymt_thread_handle * handle)
   return pthread_detach(handle->thread_handle);
 }
                        
-int nymt_thread_join(nymt_thread_handle *handle, void ** ret)
+int nymt_thread_join(nymt_thread_handle *handle)
 {
   /* TBD: Map return values somehow... */
-  return pthread_join(handle->thread_handle, ret);
+  return pthread_join(handle->thread_handle, NULL);
 }
 
-void nymt_thread_exit(void * ret)
+void nymt_thread_exit()
 {
-  pthread_exit(ret);
+  pthread_exit(0);
 }
 
 nymt_mutex_handle * nymt_get_mutex_handle(void)

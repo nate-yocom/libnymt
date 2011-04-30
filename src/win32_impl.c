@@ -24,8 +24,8 @@ int nymt_thread_create(nymt_thread_handle * handle,
                        nymt_thread_start start, void * args)
 {
   /* TBD: Map return value(s) somehow... */
-	handle->thread_proc = start;
-	handle->thread_args = args;
+  handle->thread_proc = start;
+  handle->thread_args = args;
   handle->thread_handle = CreateThread(NULL, 0, _nymt_win32_thread_proc, handle, 0, 0);
   /* TBD: Check for failure! CreateThread returns null... */
   return NYMT_SUCCESS;

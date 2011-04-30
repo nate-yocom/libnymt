@@ -41,6 +41,8 @@ extern "C" {
 struct nymt_thread_handle
 {
   pthread_t thread_handle;
+  nymt_thread_start thread_start;
+  void * thread_args;
 };
 
 struct nymt_mutex_handle
