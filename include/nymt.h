@@ -74,7 +74,7 @@ uint32_t  nymt_version_patch();
 /* Opaque handle definitions */
 typedef struct nymt_thread_handle nymt_thread_handle;
 typedef struct nymt_mutex_handle nymt_mutex_handle;
-typedef void * (*nymt_thread_start)(void *);
+typedef void (*nymt_thread_start)(void *);
 
 /* Handle factories */
 nymt_thread_handle *      nymt_get_thread_handle(void);
@@ -87,8 +87,8 @@ void  nymt_free_mutex_handle(nymt_mutex_handle *);
 /* Threads */
 int   nymt_thread_create(nymt_thread_handle *, nymt_thread_start, void *);
 int   nymt_thread_detach(nymt_thread_handle *);
-int   nymt_thread_join(nymt_thread_handle *, void **);
-void  nymt_thread_exit(void *);
+int   nymt_thread_join(nymt_thread_handle *);
+void  nymt_thread_exit();
 
 /* Mutexes */
 int   nymt_mutex_lock(nymt_mutex_handle *);
