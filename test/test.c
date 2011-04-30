@@ -34,16 +34,15 @@
 
 #include <nymt.h>
 
-void * print_test_message(void * arg)
+void print_test_message(void * arg)
 {
   printf("Hello(%p)\n", arg);
-  nymt_thread_exit(arg);
-  return 0;  /* Unreachable code, compiler doesn't know that */
+  return;
 }
 
 int global_num = 0;
 
-void * sync_test_message(void * arg)
+void sync_test_message(void * arg)
 {
   int x = 0;
   nymt_mutex_handle * mutex = (nymt_mutex_handle *) arg;
@@ -61,7 +60,7 @@ int main(int argc, char ** argv)
   nymt_thread_handle * thread_handle = 0;
   nymt_thread_handle * thread_handle2 = 0;
   nymt_mutex_handle * mutex_handle = 0;
-  void * thread_result = 0;
+  int ret = 0;
 
   printf("libnymt version: 0x%08x = %d.%d.%d.%d\n", 
     nymt_version_number(), nymt_version_major(),
@@ -69,11 +68,11 @@ int main(int argc, char ** argv)
     nymt_version_patch());
 
   thread_handle = nymt_get_thread_handle();
-  int ret = nymt_thread_create(thread_handle, print_test_message, (void *) 0x42);
+  nymt_thread_create(thread_handle, print_test_message, (void *) 0x42);
+  ret = nymt_thread_create(thread_handle, print_test_message, (void *) 0x42);
   printf("nymt_thread_create: %d\n", ret);
-  ret = nymt_thread_join(thread_handle, &thread_result);
+  ret = nymt_thread_join(thread_handle);
   printf("nymt_thread_join: %d\n", ret);
-  printf("thread result: %p\n", thread_result);
   nymt_free_thread_handle(thread_handle);
 
   printf("Counting to 50 with 2 threads!\n");
@@ -82,12 +81,11 @@ int main(int argc, char ** argv)
   thread_handle2 = nymt_get_thread_handle();
   nymt_thread_create(thread_handle, sync_test_message, (void *) mutex_handle);
   nymt_thread_create(thread_handle2, sync_test_message, (void *) mutex_handle);
-  nymt_thread_join(thread_handle, 0);
-  nymt_thread_join(thread_handle2, 0);
+  nymt_thread_join(thread_handle);
+  nymt_thread_join(thread_handle2);
   nymt_free_thread_handle(thread_handle);
   nymt_free_thread_handle(thread_handle2);
   nymt_free_mutex_handle(mutex_handle);
 
-  
   return 0;
 }

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\nymt.c">
+      <Filter>Agnostic Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\win32_impl.c">
+      <Filter>Win32 Impl Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\nymt.h">
+      <Filter>Public Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\win32_impl.h">
+      <Filter>Internal Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Public Header Files">
+      <UniqueIdentifier>{a12441a1-132c-49c3-8052-e76531afed0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Internal Header Files">
+      <UniqueIdentifier>{90b1b9d7-c9ca-4afa-a264-0119e3f9f0db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win32 Impl Source">
+      <UniqueIdentifier>{4d0831a8-740d-4208-8441-4cbcef57be42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Agnostic Source">
+      <UniqueIdentifier>{2beb8534-911e-425f-b012-99ca5bced0ed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
